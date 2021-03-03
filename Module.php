@@ -20,7 +20,7 @@ class Module extends \humhub\components\Module
      */
     public function getConfigUrl()
     {
-        return Url::to(['/auth-google/admin']);
+        return Url::to(['/auth-linkedin/admin']);
     }
 
     /**

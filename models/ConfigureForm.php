@@ -18,12 +18,12 @@ class ConfigureForm extends Model
     public $enabled;
 
     /**
-     * @var string the client id provided by Google
+     * @var string the client id provided by LinkedIn
      */
     public $clientId;
 
     /**
-     * @var string the client secret provided by Google
+     * @var string the client secret provided by LinkedIn
      */
     public $clientSecret;
 
@@ -49,9 +49,9 @@ class ConfigureForm extends Model
     public function attributeLabels()
     {
         return [
-            'enabled' => Yii::t('AuthGoogleModule.base', 'Enabled'),
-            'clientId' => Yii::t('AuthGoogleModule.base', 'Client ID'),
-            'clientSecret' => Yii::t('AuthGoogleModule.base', 'Client secret'),
+            'enabled' => Yii::t('AuthLinkedinModule.base', 'Enabled'),
+            'clientId' => Yii::t('AuthLinkedinModule.base', 'Client ID'),
+            'clientSecret' => Yii::t('AuthLinkedinModule.base', 'Client secret'),
         ];
     }
 
@@ -70,7 +70,7 @@ class ConfigureForm extends Model
     public function loadSettings()
     {
         /** @var Module $module */
-        $module = Yii::$app->getModule('auth-google');
+        $module = Yii::$app->getModule('auth-linkedin');
 
         $settings = $module->settings;
 
@@ -78,7 +78,7 @@ class ConfigureForm extends Model
         $this->clientId = $settings->get('clientId');
         $this->clientSecret = $settings->get('clientSecret');
 
-        $this->redirectUri = Url::to(['/user/auth/external', 'authclient' => 'google'], true);
+        $this->redirectUri = Url::to(['/user/auth/external', 'authclient' => 'linkedin'], true);
     }
 
     /**
@@ -87,7 +87,7 @@ class ConfigureForm extends Model
     public function saveSettings()
     {
         /** @var Module $module */
-        $module = Yii::$app->getModule('auth-google');
+        $module = Yii::$app->getModule('auth-linkedin');
 
         $module->settings->set('enabled', (boolean)$this->enabled);
         $module->settings->set('clientId', $this->clientId);
