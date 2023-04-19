@@ -31,18 +31,20 @@ class LinkedinAuth extends LinkedIn
         return [
             'username' => 'displayName',
             'firstname' => function ($attributes) {
-                if (!isset($attributes['given_name'])) {
-                    return '';
+                if (!isset($attributes['firstname']) || empty($attributes['firstname'])) {
+                    $key = array_keys($attributes['firstName']['localized'])[0];
+                    return isset($attributes['firstName']['localized'][$key]) ? $attributes['firstName']['localized'][$key] : '';
                 }
 
-                return $attributes['given_name'];
+                return $attributes['firstname'];
             },
             'lastname' => function ($attributes) {
-                if (!isset($attributes['family_name'])) {
-                    return '';
+                if (!isset($attributes['lastname']) || empty($attributes['lastname'])) {
+                    $key = array_keys($attributes['lastName']['localized'])[0];
+                    return isset($attributes['lastName']['localized'][$key]) ? $attributes['lastName']['localized'][$key] : '';
                 }
 
-                return $attributes['family_name'];
+                return $attributes['lastname'];
             },
             'title' => 'tagline',
             'email' => function ($attributes) {
