@@ -22,7 +22,7 @@ class Events
             $authClientCollection->setClient('linkedin', [
                 'class' => ConfigureForm::getInstance()->useV2 ? LinkedinAuthV2::class : LinkedinAuth::class,
                 'clientId' => ConfigureForm::getInstance()->clientId,
-                'clientSecret' => ConfigureForm::getInstance()->clientSecret
+                'clientSecret' => ConfigureForm::getInstance()->clientSecret,
             ]);
         }
     }

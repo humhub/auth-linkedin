@@ -9,7 +9,6 @@ use yii\authclient\clients\LinkedIn;
  */
 class LinkedinAuth extends LinkedIn
 {
-
     /**
      * @inheritdoc
      */
