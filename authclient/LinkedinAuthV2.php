@@ -10,7 +10,6 @@ use humhub\helpers\ArrayHelper;
  */
 class LinkedinAuthV2 extends LinkedIn
 {
-
     /**
      * @inheritdoc
      */
