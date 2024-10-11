@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.1 (Unreleased)
---------------------
+1.1.1 (October 10, 2024)
+------------------------
 - Enh #7: Use PHP CS Fixer
 - Fix #6: Redirection to registration form fails (e.g. when a profile field is required) with version 2
 
