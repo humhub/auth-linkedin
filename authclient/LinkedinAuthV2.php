@@ -3,7 +3,6 @@
 namespace humhubContrib\auth\linkedin\authclient;
 
 use yii\authclient\clients\LinkedIn;
-use humhub\helpers\ArrayHelper;
 
 /**
  * LinkedIn allows authentication via LinkedIn OAuth.
@@ -45,15 +44,9 @@ class LinkedinAuthV2 extends LinkedIn
         return [
             'id' => 'sub',
             'username' => 'displayName',
-            'firstname' => function ($attributes) {
-                return ArrayHelper::getValue($attributes, 'given_name', '');
-            },
-            'lastname' => function ($attributes) {
-                return ArrayHelper::getValue($attributes, 'family_name', '');
-            },
-            'email' => function ($attributes) {
-                return ArrayHelper::getValue($attributes, 'email', '');
-            },
+            'firstname' => 'given_name',
+            'lastname' => 'family_name',
+            'email' => 'email',
         ];
     }
 }
