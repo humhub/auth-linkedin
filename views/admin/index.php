@@ -1,11 +1,14 @@
 <?php
-/* @var $this \humhub\modules\ui\view\components\View */
-/* @var $model \humhubContrib\auth\linkedin\models\ConfigureForm */
 
-use yii\bootstrap\ActiveForm;
+use humhub\components\View;
+use humhub\widgets\form\ActiveForm;
+use humhubContrib\auth\linkedin\models\ConfigureForm;
 use yii\helpers\Html;
 
+/* @var $this View */
+/* @var $model ConfigureForm */
 ?>
+
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -29,7 +32,7 @@ use yii\helpers\Html;
             <br/>
             <?= $form->field($model, 'redirectUri')->textInput(['readonly' => true]); ?>
             <br/>
-            <div class="form-group">
+            <div class="mb-3">
                 <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>
             </div>
             <?php ActiveForm::end(); ?>
