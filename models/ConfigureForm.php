@@ -13,7 +13,7 @@ use humhubContrib\auth\linkedin\Module;
 class ConfigureForm extends Model
 {
     /**
-     * @var boolean Enable this authclient
+     * @var bool Enable this authclient
      */
     public $enabled;
 
@@ -33,13 +33,18 @@ class ConfigureForm extends Model
     public $redirectUri;
 
     /**
+     * @var bool use signing with LinkedIn version 2
+     */
+    public $useV2;
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['clientId', 'clientSecret'], 'required'],
-            [['enabled'], 'boolean'],
+            [['enabled', 'useV2'], 'boolean'],
         ];
     }
 
@@ -52,6 +57,7 @@ class ConfigureForm extends Model
             'enabled' => Yii::t('AuthLinkedinModule.base', 'Enabled'),
             'clientId' => Yii::t('AuthLinkedinModule.base', 'Client ID'),
             'clientSecret' => Yii::t('AuthLinkedinModule.base', 'Client secret'),
+            'useV2' => Yii::t('AuthLinkedinModule.base', 'Use v2'),
         ];
     }
 
@@ -74,9 +80,10 @@ class ConfigureForm extends Model
 
         $settings = $module->settings;
 
-        $this->enabled = (boolean)$settings->get('enabled');
+        $this->enabled = (bool)$settings->get('enabled');
         $this->clientId = $settings->get('clientId');
         $this->clientSecret = $settings->get('clientSecret');
+        $this->useV2 = $settings->get('useV2');
 
         $this->redirectUri = Url::to(['/user/auth/external', 'authclient' => 'linkedin'], true);
     }
@@ -89,9 +96,10 @@ class ConfigureForm extends Model
         /** @var Module $module */
         $module = Yii::$app->getModule('auth-linkedin');
 
-        $module->settings->set('enabled', (boolean)$this->enabled);
+        $module->settings->set('enabled', (bool)$this->enabled);
         $module->settings->set('clientId', $this->clientId);
         $module->settings->set('clientSecret', $this->clientSecret);
+        $module->settings->set('useV2', $this->useV2);
 
         return true;
     }
@@ -101,7 +109,7 @@ class ConfigureForm extends Model
      */
     public static function getInstance()
     {
-        $config = new static;
+        $config = new static();
         $config->loadSettings();
 
         return $config;
