@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.1 (Unreleased)
------------------------
+1.2.1 (July 8, 2026)
+--------------------
 - Fix #10: Use bootstrap class to build button and link
 
 1.2.0 (August 28, 2025)
