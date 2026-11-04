@@ -2,9 +2,9 @@
 
 namespace humhubContrib\auth\linkedin\controllers;
 
-use Yii;
 use humhub\modules\admin\components\Controller;
 use humhubContrib\auth\linkedin\models\ConfigureForm;
+use Yii;
 
 /**
  * Module configuation

@@ -9,6 +9,8 @@ use yii\authclient\clients\LinkedIn;
  */
 class LinkedinAuthV2 extends LinkedIn
 {
+    use UsernameTrait;
+
     /**
      * @inheritdoc
      */
@@ -24,6 +26,8 @@ class LinkedinAuthV2 extends LinkedIn
 
     public function init()
     {
+        parent::init();
+
         $this->scope = implode(' ', [
             'openid',
             'profile',
@@ -33,7 +37,19 @@ class LinkedinAuthV2 extends LinkedIn
 
     protected function initUserAttributes()
     {
-        return $this->api('userinfo', 'GET');
+        $attributes = $this->api('userinfo', 'GET');
+
+        // Do not trust an email address which LinkedIn reports as not verified
+        if (isset($attributes['email_verified']) && !filter_var($attributes['email_verified'], FILTER_VALIDATE_BOOLEAN)) {
+            unset($attributes['email']);
+        }
+
+        $username = $this->buildUsername((string)($attributes['name'] ?? ''), $attributes['email'] ?? null);
+        if ($username !== '') {
+            $attributes['username'] = $username;
+        }
+
+        return $attributes;
     }
 
     /**
@@ -43,7 +59,6 @@ class LinkedinAuthV2 extends LinkedIn
     {
         return [
             'id' => 'sub',
-            'username' => 'displayName',
             'firstname' => 'given_name',
             'lastname' => 'family_name',
             'email' => 'email',

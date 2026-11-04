@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.2 (Unreleased)
+------------------
+- Fix #11: Do not trust unverified LinkedIn emails; Prefill the username; Fix errors on missing email or name with version 1; Allow clearing disabled settings
+
 1.2.1 (July 8, 2026)
 --------------------
 - Fix #10: Use bootstrap class to build button and link

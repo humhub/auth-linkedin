@@ -2,10 +2,10 @@
 
 namespace humhubContrib\auth\linkedin\models;
 
+use humhubContrib\auth\linkedin\Module;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Url;
-use humhubContrib\auth\linkedin\Module;
 
 /**
  * The module configuration model
@@ -43,7 +43,7 @@ class ConfigureForm extends Model
     public function rules()
     {
         return [
-            [['clientId', 'clientSecret'], 'required'],
+            [['clientId', 'clientSecret'], 'required', 'when' => fn() => (bool)$this->enabled],
             [['enabled', 'useV2'], 'boolean'],
         ];
     }
