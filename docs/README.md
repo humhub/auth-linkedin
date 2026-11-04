@@ -5,7 +5,7 @@ A new button "LinkedIn" will appear on the login page.
 
 ## Configuration
 
-Please follow the to create the required ` OAuth client ID` credentials.
+Please follow the LinkedIn instructions to create the required `OAuth client ID` credentials.
 
 [V1](https://www.linkedin.com/help/linkedin/answer/5070/log-in-with-linkedin-credentials?lang=en)
 [V2](https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2)

@@ -9,6 +9,8 @@ use yii\authclient\clients\LinkedIn;
  */
 class LinkedinAuth extends LinkedIn
 {
+    use UsernameTrait;
+
     /**
      * @inheritdoc
      */
@@ -25,30 +27,44 @@ class LinkedinAuth extends LinkedIn
     /**
      * @inheritdoc
      */
+    protected function initUserAttributes()
+    {
+        $attributes = parent::initUserAttributes();
+
+        $attributes['firstname'] = $this->getLocalizedValue($attributes['firstName'] ?? null);
+        $attributes['lastname'] = $this->getLocalizedValue($attributes['lastName'] ?? null);
+
+        $username = $this->buildUsername(
+            trim($attributes['firstname'] . ' ' . $attributes['lastname']),
+            $attributes['email'] ?? null,
+        );
+        if ($username !== '') {
+            $attributes['username'] = $username;
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * @inheritdoc
+     */
     protected function defaultNormalizeUserAttributeMap()
     {
         return [
-            'username' => 'displayName',
-            'firstname' => function ($attributes) {
-                if (!isset($attributes['firstname']) || empty($attributes['firstname'])) {
-                    $key = array_keys($attributes['firstName']['localized'])[0];
-                    return isset($attributes['firstName']['localized'][$key]) ? $attributes['firstName']['localized'][$key] : '';
-                }
-
-                return $attributes['firstname'];
-            },
-            'lastname' => function ($attributes) {
-                if (!isset($attributes['lastname']) || empty($attributes['lastname'])) {
-                    $key = array_keys($attributes['lastName']['localized'])[0];
-                    return isset($attributes['lastName']['localized'][$key]) ? $attributes['lastName']['localized'][$key] : '';
-                }
-
-                return $attributes['lastname'];
-            },
             'title' => 'tagline',
-            'email' => function ($attributes) {
-                return $attributes['email'];
-            },
         ];
+    }
+
+    /**
+     * Returns the first value of a LinkedIn localized field, e.g. `['localized' => ['en_US' => 'John']]`
+     *
+     * @param mixed $field
+     * @return string
+     */
+    private function getLocalizedValue($field): string
+    {
+        $values = is_array($field) && is_array($field['localized'] ?? null) ? array_values($field['localized']) : [];
+
+        return isset($values[0]) && is_string($values[0]) ? $values[0] : '';
     }
 }
