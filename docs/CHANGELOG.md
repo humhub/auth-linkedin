@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.3.0 (Unreleased)
+------------------
+- Enh: Update for HumHub 1.20 (Tabler icon for the LinkedIn login button)
+
 1.2.2 (Unreleased)
 ------------------
 - Fix #11: Do not trust unverified LinkedIn emails; Prefill the username; Fix errors on missing email or name with version 1; Allow clearing disabled settings

@@ -19,7 +19,7 @@ class LinkedinAuth extends LinkedIn
         return [
             'popupWidth' => 860,
             'popupHeight' => 480,
-            'cssIcon' => 'fa fa-linkedin',
+            'cssIcon' => 'ti ti-brand-linkedin',
             'buttonBackgroundColor' => '#e0492f',
         ];
     }
