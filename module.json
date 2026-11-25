@@ -7,6 +7,7 @@
     "version": "1.2.2",
     "homepage": "https://github.com/humhub/auth-linkedin",
     "humhub": {
-        "minVersion": "1.18"
+        "minVersion": "1.18",
+        "maxVersion": "1.19"
     }
 }
