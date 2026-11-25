@@ -3,6 +3,7 @@ Changelog
 
 1.3.0 (Unreleased)
 ------------------
+- Enh: Cards of the core 1.20 instead of Bootstrap 3 panels (humhub/humhub#8777)
 - Enh: Update for HumHub 1.20 (Tabler icon for the LinkedIn login button)
 
 1.2.2 (Unreleased)

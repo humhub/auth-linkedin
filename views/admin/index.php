@@ -11,10 +11,11 @@ use humhubContrib\auth\linkedin\models\ConfigureForm;
 ?>
 
 <div class="container-fluid">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <?= Yii::t('AuthLinkedinModule.base', '<strong>LinkedIn</strong> Sign-In configuration') ?></div>
-        <div class="panel-body">
+    <div class="card content-card">
+        <div class="card-header">
+            <div class="card-title"><?= Yii::t('AuthLinkedinModule.base', '<strong>LinkedIn</strong> Sign-In configuration') ?></div>
+        </div>
+        <div class="card-body">
             <p>
                 <?= Yii::t('AuthLinkedinModule.base', 'Please follow the LinkedIn instructions to create the required <strong>OAuth client</strong> credentials.'); ?>
             </p>
